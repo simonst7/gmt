@@ -33,7 +33,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -132,6 +131,7 @@
 <li class="toctree-l1"><a class="reference internal" href="debug.html">Debugging GMT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">GMT C API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="postscriptlight.html">PostScriptLight C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devdocs.html">Developer Documentation</a></li>
 </ul>
 
             
@@ -259,15 +259,11 @@ on intensities provided in a separate grid file.</p>
 <h2>Required Arguments<a class="headerlink" href="#required-arguments" title="Permalink to this headline">¶</a></h2>
 <dl class="simple">
 <dt><em>reliefgrid</em></dt><dd><p>2-D gridded data set to be imaged (the relief of the surface). (See
-GRID FILE FORMAT below.)</p>
+<a class="reference internal" href="gmt.html#grd-inout-full"><span class="std std-ref">Grid File Formats</span></a>).</p>
 </dd>
 </dl>
 <span class="target" id="j"></span><dl class="simple">
 <dt><strong>-J</strong><em>parameters</em> <a class="reference internal" href="gmt.html#j-full"><span class="std std-ref">(more …)</span></a></dt><dd><p>Select map projection.  </p>
-</dd>
-</dl>
-<dl class="simple">
-<dt><strong>-Jz</strong>|<strong>Z</strong><em>parameters</em> <a class="reference internal" href="gmt.html#jz-full"><span class="std std-ref">(more …)</span></a></dt><dd><p>Set z-axis scaling; same syntax as <strong>-Jx</strong>.</p>
 </dd>
 </dl>
 </div>
@@ -318,6 +314,10 @@ default arguments (<strong>+a</strong>-45<strong>+nt</strong>1<strong>+m</strong
 specific intensity scenario then run <a class="reference internal" href="grdgradient.html"><span class="doc">grdgradient</span></a> separately first.
 If we should derive intensities from another file than <em>reliefgrid</em>, specify the file
 [Default is no illumination].</p>
+</dd>
+</dl>
+<dl class="simple" id="jz">
+<dt><strong>-Jz</strong>|<strong>Z</strong><em>parameters</em> <a class="reference internal" href="gmt.html#jz-full"><span class="std std-ref">(more …)</span></a></dt><dd><p>Set z-axis scaling; same syntax as <strong>-Jx</strong>.</p>
 </dd>
 </dl>
 <dl class="simple" id="n">
@@ -419,14 +419,6 @@ any module-specific option (but not the GMT common options), then exit.</p>
 <dt><strong>--PAR</strong>=<em>value</em></dt><dd><p>Temporarily override a GMT default setting; repeatable. See <a class="reference internal" href="gmt.conf.html"><span class="doc">gmt.conf</span></a> for parameters.</p>
 </dd>
 </dl>
-</div>
-<div class="section" id="grid-file-formats">
-<h2>Grid File Formats<a class="headerlink" href="#grid-file-formats" title="Permalink to this headline">¶</a></h2>
-<p>By default GMT writes out grid as single precision floats in a
-COARDS-complaint netCDF file format. However, GMT is able to produce
-grid files in many other commonly used grid file formats and also
-facilitates so called “packing” of grids, writing out floating point
-data as 1- or 2-byte integers. <a class="reference internal" href="gmt.html#grd-inout-full"><span class="std std-ref">(more …)</span></a></p>
 </div>
 <div class="section" id="consequences-of-grid-resampling">
 <h2>Consequences of grid resampling<a class="headerlink" href="#consequences-of-grid-resampling" title="Permalink to this headline">¶</a></h2>
@@ -535,9 +527,9 @@ variations within polygons by using scanline conversion to image the polygons.</
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, The GMT Team.
+        &copy; Copyright 2021, The GMT Team.
       <span class="lastupdated">
-        Last updated on Dec 02, 2020.
+        Last updated on Jan 25, 2021.
       </span>
 
     </p>

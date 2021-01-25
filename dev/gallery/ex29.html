@@ -33,7 +33,6 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
@@ -132,6 +131,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../debug.html">Debugging GMT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">GMT C API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../postscriptlight.html">PostScriptLight C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devdocs.html">Developer Documentation</a></li>
 </ul>
 
             
@@ -261,8 +261,8 @@ gmt begin ex29
 			SIND <span class="nv">$c</span> DIV DUP MUL ADD SQRT <span class="nv">INV</span> <span class="o">=</span> PROJ_ELLIPSOID.nc
 
 	<span class="c1">#  Do both Parker and Wessel/Becker solutions (tension = 0.9975)</span>
-	gmt greenspline -RPROJ_ELLIPSOID.nc @mars370.txt -D4 -Sp -Gmars.nc
-	gmt greenspline -RPROJ_ELLIPSOID.nc @mars370.txt -D4 -Sq0.9975 -Gmars2.nc
+	gmt greenspline -RPROJ_ELLIPSOID.nc @mars370.txt -Z4 -Sp -Gmars.nc
+	gmt greenspline -RPROJ_ELLIPSOID.nc @mars370.txt -Z4 -Sq0.9975 -Gmars2.nc
 	<span class="c1"># Scale to km and remove PROJ_ELLIPSOID</span>
 	gmt grdmath mars.nc  <span class="m">1000</span> DIV PROJ_ELLIPSOID.nc <span class="nv">SUB</span> <span class="o">=</span> mars.nc
 	gmt grdmath mars2.nc <span class="m">1000</span> DIV PROJ_ELLIPSOID.nc <span class="nv">SUB</span> <span class="o">=</span> mars2.nc
@@ -312,9 +312,9 @@ gmt end show
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, The GMT Team.
+        &copy; Copyright 2021, The GMT Team.
       <span class="lastupdated">
-        Last updated on Dec 02, 2020.
+        Last updated on Jan 25, 2021.
       </span>
 
     </p>

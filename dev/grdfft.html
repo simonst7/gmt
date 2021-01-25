@@ -33,7 +33,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -132,6 +131,7 @@
 <li class="toctree-l1"><a class="reference internal" href="debug.html">Debugging GMT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">GMT C API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="postscriptlight.html">PostScriptLight C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devdocs.html">Developer Documentation</a></li>
 </ul>
 
             
@@ -254,12 +254,10 @@ to meters using <a class="reference internal" href="grdedit.html"><span class="d
 <div class="section" id="required-arguments">
 <h2>Required Arguments<a class="headerlink" href="#required-arguments" title="Permalink to this headline">¶</a></h2>
 <dl class="simple">
-<dt><em>ingrid</em></dt><dd><p>2-D binary grid file to be operated on. (See GRID FILE FORMATS
-below). For cross-spectral operations, also give the second grid
-file <em>ingrid2</em>.</p>
+<dt><em>ingrid</em></dt><dd><p>2-D binary grid file to be operated on (see <a class="reference internal" href="gmt.html#grd-inout-full"><span class="std std-ref">Grid File Formats</span></a>).
+For cross-spectral operations, also give the second grid file <em>ingrid2</em>.</p>
 </dd>
-<dt><strong>-G</strong><em>outfile</em></dt><dd><p>Specify the name of the output grid file or the 1-D spectrum table
-(see <strong>-E</strong>). (See GRID FILE FORMATS below).</p>
+<dt><strong>-G</strong><em>outfile</em></dt><dd><p>Specify the name of the output grid file (see <a class="reference internal" href="gmt.html#grd-inout-full"><span class="std std-ref">Grid File Formats</span></a>) or the 1-D spectrum table (see <strong>-E</strong>).</p>
 </dd>
 </dl>
 </div>
@@ -431,14 +429,6 @@ any module-specific option (but not the GMT common options), then exit.</p>
 </dd>
 </dl>
 </div>
-<div class="section" id="grid-file-formats">
-<h2>Grid File Formats<a class="headerlink" href="#grid-file-formats" title="Permalink to this headline">¶</a></h2>
-<p>By default GMT writes out grid as single precision floats in a
-COARDS-complaint netCDF file format. However, GMT is able to produce
-grid files in many other commonly used grid file formats and also
-facilitates so called “packing” of grids, writing out floating point
-data as 1- or 2-byte integers. <a class="reference internal" href="gmt.html#grd-inout-full"><span class="std std-ref">(more …)</span></a></p>
-</div>
 <div class="section" id="grid-distance-units">
 <h2>Grid Distance Units<a class="headerlink" href="#grid-distance-units" title="Permalink to this headline">¶</a></h2>
 <p>If the grid does not have meter as the horizontal unit, append <strong>+u</strong><em>unit</em> to the input file name to convert from the
@@ -548,9 +538,9 @@ components of the raw spectrum of the data in topo.nc, try:</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, The GMT Team.
+        &copy; Copyright 2021, The GMT Team.
       <span class="lastupdated">
-        Last updated on Dec 02, 2020.
+        Last updated on Jan 25, 2021.
       </span>
 
     </p>

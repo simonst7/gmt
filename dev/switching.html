@@ -33,7 +33,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -136,6 +135,7 @@
 <li class="toctree-l1"><a class="reference internal" href="debug.html">Debugging GMT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">GMT C API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="postscriptlight.html">PostScriptLight C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devdocs.html">Developer Documentation</a></li>
 </ul>
 
             
@@ -326,7 +326,7 @@ we need a slightly modified version of the wrapper script:</p>
 <p>On the command line this might be too much typing to switch between
 versions. So we might as well put everything together in a script file
 <code class="docutils literal notranslate"><span class="pre">gmtfun</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">case</span> <span class="nv">$1</span> in
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">case</span> <span class="nv">$1</span> <span class="k">in</span>
   <span class="m">4</span><span class="o">)</span>
   <span class="k">function</span> gmt<span class="o">()</span> <span class="o">{</span>
     <span class="nv">module</span><span class="o">=</span><span class="nv">$1</span><span class="p">;</span> shift<span class="p">;</span> /path/to/gmt4/bin/<span class="si">${</span><span class="nv">module</span><span class="si">}</span> <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
@@ -370,9 +370,9 @@ between versions.</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, The GMT Team.
+        &copy; Copyright 2021, The GMT Team.
       <span class="lastupdated">
-        Last updated on Dec 02, 2020.
+        Last updated on Jan 25, 2021.
       </span>
 
     </p>

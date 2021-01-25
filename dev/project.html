@@ -33,7 +33,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -132,6 +131,7 @@
 <li class="toctree-l1"><a class="reference internal" href="debug.html">Debugging GMT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">GMT C API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="postscriptlight.html">PostScriptLight C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devdocs.html">Developer Documentation</a></li>
 </ul>
 
             
@@ -392,10 +392,13 @@ within <em>w_min</em> &lt; <em>q</em> &lt; <em>w_max</em>.</p>
 </dd>
 <dt><strong>-Z</strong><em>major</em>/<em>minor</em>/<em>azimuth</em>[<strong>+e</strong>]</dt><dd><p>Used in conjunction with <strong>-C</strong> (sets its center) and <strong>-G</strong> (sets the
 distance increment) to create the coordinates of an ellipse
-with <em>major</em> and <em>minor</em> axes given in km (unless <strong>-N</strong> is given) and the <em>azimuth</em> of the
-major axis in degrees.  Append <strong>+e</strong> to adjust the increment set via
-<strong>-G</strong> so that the the ellipse has equal distance increments [Default
-uses the given increment and closes the ellipse].</p>
+with <em>major</em> and <em>minor</em> axes given in km (unless <strong>-N</strong> is given for a
+Cartesian ellipse) and the <em>azimuth</em> of the major axis in degrees.
+Append <strong>+e</strong> to adjust the increment set via <strong>-G</strong> so that the the ellipse
+has equal distance increments [Default uses the given increment and closes
+the ellipse].  For degenerate ellipses you can just supply a single <em>diameter</em>
+instead.  <strong>Note</strong>: For the Cartesian ellipse (which requires <strong>-N</strong>), we
+expect <em>direction</em> counter-clockwise from the horizontal instead of an <em>azimuth</em>.</p>
 </dd>
 </dl>
 <dl class="simple">
@@ -512,7 +515,7 @@ defined by the great circle from the pole to a point 15E,15N, try</p>
 </pre></div>
 </div>
 </div></blockquote>
-<p>To generate points approximately every 10km along an ellipse centered on (30W,70N) with
+<p>To generate points approximately every 10 km along an ellipse centered on (30W,70N) with
 major axis of 1500 km with azimuth of 30 degree and a minor axis of 600 km, try</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt project -C-30/70 -G10 -Z1500/600/30+e &gt; ellipse.xyp
@@ -601,9 +604,9 @@ This gives coordinates for an oblique small circle.</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, The GMT Team.
+        &copy; Copyright 2021, The GMT Team.
       <span class="lastupdated">
-        Last updated on Dec 02, 2020.
+        Last updated on Jan 25, 2021.
       </span>
 
     </p>

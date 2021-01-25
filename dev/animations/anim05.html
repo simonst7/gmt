@@ -33,7 +33,6 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
@@ -132,6 +131,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../debug.html">Debugging GMT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">GMT C API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../postscriptlight.html">PostScriptLight C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devdocs.html">Developer Documentation</a></li>
 </ul>
 
             
@@ -254,7 +254,7 @@ cat <span class="s">&lt;&lt; EOF &gt; pre.sh</span>
 cat <span class="s">&lt;&lt; EOF &gt; main.sh</span>
 <span class="s">gmt begin</span>
 <span class="s">	let k=\${MOVIE_FRAME}+1</span>
-<span class="s">	gmt greenspline @Table_5_11.txt -R0/6.5/0/6.5 -I0.05 -Sc -Gt.nc -D1 -Cn\${k} -Emisfit.txt</span>
+<span class="s">	gmt greenspline @Table_5_11.txt -R0/6.5/0/6.5 -I0.05 -Sc -Gt.nc -Z1 -Cn\${k} -Emisfit.txt</span>
 <span class="s">	gmt grdcontour t.nc -C25 -A50 -Baf -BWsNE -JX4i -Gl3.6/6.5/4.05/0.75 -X0.25i -Y0.4i</span>
 <span class="s">	gmt plot misfit.txt -Ct.cpt -Sc0.15c -Wfaint -i0,1,4</span>
 <span class="s">	printf &quot;%2.2d&quot; \$k | gmt text -F+cTR+jTR+f18p -Dj0.1i -Gwhite -W0.25p</span>
@@ -292,9 +292,9 @@ gmt movie main.sh -C4.5ix5.0ix100 -Nanim05 -T@Table_5_11.txt -Sbpre.sh -D10 -Zs 
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, The GMT Team.
+        &copy; Copyright 2021, The GMT Team.
       <span class="lastupdated">
-        Last updated on Dec 02, 2020.
+        Last updated on Jan 25, 2021.
       </span>
 
     </p>

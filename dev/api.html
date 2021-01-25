@@ -33,7 +33,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -291,6 +290,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="postscriptlight.html">PostScriptLight C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devdocs.html">Developer Documentation</a></li>
 </ul>
 
             
@@ -1628,7 +1628,7 @@ way of specification you may use <code class="docutils literal notranslate"><spa
 </dd>
 <dt><strong>GMT_IS_CUBE</strong>.</dt><dd><p>Same procedure as for <strong>GMT_IS_GRID</strong> but both <code class="docutils literal notranslate"><span class="pre">wesn</span></code>, <code class="docutils literal notranslate"><span class="pre">inc</span></code> and <code class="docutils literal notranslate"><span class="pre">par</span></code> have one extra
 dimension for the depth or time axis.  For non-equidistant layers you need to use
-<code class="docutils literal notranslate"><span class="pre">par[2]</span></code> to sets the number of layers, otherwise <code class="docutils literal notranslate"><span class="pre">wesn</span></code> and <code class="docutils literal notranslate"><span class="pre">inc</span></code> can set it all.</p>
+<code class="docutils literal notranslate"><span class="pre">par[2]</span></code> to sets the number of layers and use <code class="docutils literal notranslate"><span class="pre">inc[2]</span> <span class="pre">=</span> <span class="pre">0</span></code>, otherwise <code class="docutils literal notranslate"><span class="pre">wesn</span></code> and <code class="docutils literal notranslate"><span class="pre">inc</span></code> can set it all.</p>
 </dd>
 <dt><strong>GMT_IS_DATASET</strong>.</dt><dd><p>We allocate an empty <a class="reference internal" href="#struct-dataset"><span class="std std-ref">GMT_DATASET</span></a> structure consisting of <code class="docutils literal notranslate"><span class="pre">par[0]</span></code> tables,
 each with <code class="docutils literal notranslate"><span class="pre">par[1]</span></code> segments, each with <code class="docutils literal notranslate"><span class="pre">par[2]</span></code> rows, all with <code class="docutils literal notranslate"><span class="pre">par[3]</span></code> columns.
@@ -3906,7 +3906,7 @@ allocated will be <em>size * n_bands</em>, where the latter is one of the parame
 <div class="highlight-c notranslate" id="struct-cube"><div class="highlight"><pre><span></span> <span class="k">struct</span> <span class="nc">GMT_CUBE</span> <span class="p">{</span>
       <span class="k">struct</span> <span class="nc">GMT_GRID_HEADER</span> <span class="o">*</span><span class="n">header</span><span class="p">;</span>      <span class="cm">/* The full GMT header for the grid */</span>
       <span class="kt">float</span>                  <span class="o">*</span><span class="n">data</span><span class="p">;</span>        <span class="cm">/* Pointer to the float 3-D array */</span>
-      <span class="kt">unsigned</span> <span class="kt">int</span>           <span class="n">mode</span><span class="p">;</span>         <span class="cm">/* Indicates input was list of 2-D grids rather than a cube */</span>
+      <span class="kt">unsigned</span> <span class="kt">int</span>           <span class="n">mode</span><span class="p">;</span>         <span class="cm">/* Indicates data originated as a list of 2-D grids rather than a cube */</span>
       <span class="kt">double</span>                 <span class="n">z_range</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>   <span class="cm">/* Minimum/max z values (complements header-&gt;wesn) */</span>
       <span class="kt">double</span>                 <span class="n">z_inc</span><span class="p">;</span>        <span class="cm">/* z increment (complements header-&gt;inc) (0 if variable z spacing) */</span>
       <span class="kt">double</span>                 <span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="n">z</span><span class="p">;</span>   <span class="cm">/* Arrays of x,y,z coordinates */</span>
@@ -4217,9 +4217,9 @@ own threads.</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, The GMT Team.
+        &copy; Copyright 2021, The GMT Team.
       <span class="lastupdated">
-        Last updated on Dec 02, 2020.
+        Last updated on Jan 25, 2021.
       </span>
 
     </p>

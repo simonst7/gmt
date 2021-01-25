@@ -33,7 +33,6 @@
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
@@ -132,6 +131,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../debug.html">Debugging GMT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api.html">GMT C API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../postscriptlight.html">PostScriptLight C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devdocs.html">Developer Documentation</a></li>
 </ul>
 
             
@@ -312,9 +312,10 @@ calculate mean value]. Not used for simple mapping.</p>
 </dd>
 </dl>
 <dl class="simple" id="d">
-<dt><strong>-D</strong>[<strong>+x</strong><em>xname</em>][<strong>+y</strong><em>yname</em>][<strong>+z</strong><em>zname</em>][<strong>+s</strong><em>scale</em>][<strong>+o</strong><em>offset</em>][<strong>+n</strong><em>invalid</em>][<strong>+t</strong><em>title</em>][<strong>+r</strong><em>remark</em>]</dt><dd><p>Give one or more combinations for values <em>xname</em>, <em>yname</em>, <em>zname</em> (give the names of those variables
-and in square bracket their units, e.g., “distance [km]”), <em>scale</em> (to multiply grid values after
-read [normally 1]), <em>offset</em> (to add to grid after scaling [normally 0]),
+<dt><strong>-D</strong>[<strong>+x</strong><em>xname</em>][<strong>+y</strong><em>yname</em>][<strong>+z</strong><em>zname</em>][<strong>+d</strong><em>vname</em>][<strong>+s</strong><em>scale</em>][<strong>+o</strong><em>offset</em>][<strong>+n</strong><em>invalid</em>][<strong>+t</strong><em>title</em>][<strong>+r</strong><em>remark</em>][<strong>+v</strong><em>varname</em>]</dt><dd><p>Give one or more combinations for values <em>xname</em>, <em>yname</em>, <em>zname</em> (3rd dimension in cube),
+and <em>dname</em> (data value name) and give the names of those variables
+and in square bracket their units, e.g., “distance [km]”), <em>scale</em> (to multiply data values after
+read [normally 1]), <em>offset</em> (to add to data after scaling [normally 0]),
 <em>invalid</em> (a value to represent missing data [NaN]), <em>title</em> (anything you
 like), and <em>remark</em> (anything you like). Items not listed will remain untouched.
 Give a blank name to completely reset a particular string.
@@ -323,7 +324,9 @@ you need to escape them (place a backslash before each plus-sign) so they are no
 option modifiers.  Alternatively, you can place the entire double-quoted string inside single
 quotes.  If you have shell variables that contain plus symbols you cannot use single quotes but
 you can escape the plus symbols in a variable using constructs like ${variable/+/\+}.
-Note that for geographic grids (<strong>-fg</strong>) <em>xname</em> and <em>yname</em> are set automatically.</p>
+Note that for geographic grids and cubes (<strong>-fg</strong>) <em>xname</em> and <em>yname</em> are set automatically.
+Normally, the data netCDF variable is called “z” (grid) or “cube” (data cube). You can name this
+netCDF variable via <strong>+v</strong><em>varname</em>.</p>
 </dd>
 </dl>
 <dl class="simple" id="l">
@@ -426,9 +429,9 @@ individual samples will be averaged in bins</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, The GMT Team.
+        &copy; Copyright 2021, The GMT Team.
       <span class="lastupdated">
-        Last updated on Dec 02, 2020.
+        Last updated on Jan 25, 2021.
       </span>
 
     </p>

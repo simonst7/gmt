@@ -33,7 +33,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -132,6 +131,7 @@
 <li class="toctree-l1"><a class="reference internal" href="debug.html">Debugging GMT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">GMT C API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="postscriptlight.html">PostScriptLight C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devdocs.html">Developer Documentation</a></li>
 </ul>
 
             
@@ -312,7 +312,10 @@ CPT demands), <strong>rgb</strong> (force interpolation in RGB),
 <strong>hsv</strong> (force interpolation in HSV), <strong>cmyk</strong> (assumes colors are
 in CMYK but interpolates in RGB).</p>
 </dd>
-<dt id="term-COLOR_NAN"><strong>COLOR_NAN</strong></dt><dd><p>Color used for the non-defined areas of images (i.e., where z = NaN) [127.5].</p>
+<dt id="term-COLOR_NAN"><strong>COLOR_NAN</strong></dt><dd><p>Color used for the non-defined areas of images (i.e., where z = NaN) [128].</p>
+</dd>
+<dt id="term-COLOR_SET"><strong>COLOR_SET</strong></dt><dd><p>Default comma-separated list of colors (or a <em>categorical</em> CPT name) for automatic,
+sequential color assignments [<em>default</em>, which is #0072BD,#D95319,#EDB120,#7E2F8E,#77AC30,#4DBEEE,#A2142F].</p>
 </dd>
 </dl>
 </div>
@@ -352,6 +355,8 @@ to <a class="reference internal" href="#term-FONT_ANNOT_PRIMARY"><span class="xr
 </dd>
 <dt id="term-FONT_LOGO"><strong>FONT_LOGO</strong></dt><dd><p>Font to use for text plotted as part of the GMT time logo
 [8p,Helvetica,black].</p>
+</dd>
+<dt id="term-FONT_SUBTITLE"><strong>FONT_SUBTITLE</strong></dt><dd><p>Font to use when plotting titles over graphs that involve a subtitle [18p,Helvetica,black].</p>
 </dd>
 <dt id="term-FONT_TAG"><strong>FONT_TAG</strong></dt><dd><p>Font to use for subplot panel tags such as a), ii)
 [20p,Helvetica,black].</p>
@@ -814,13 +819,18 @@ none [degree].</p>
 <dt id="term-MAP_FRAME_AXES"><strong>MAP_FRAME_AXES</strong></dt><dd><p>Sets which axes to draw and annotate. Combine any uppercase <strong>W</strong>,
 <strong>E</strong>, <strong>S</strong>, <strong>N</strong>, <strong>Z</strong> to draw and annotate west, east, south,
 north and/or vertical (perspective view only) axis. Use lower case
-to draw the axis only, but not annotate. Add an optional <strong>+</strong> to
-draw a cube of axes in perspective view. [WESN].</p>
+to draw the axis only, but not annotate.   To <em>just</em> draw an axis
+without annotation and ticks you can use the <strong>l</strong>(eft), <strong>r</strong>(ight),
+<strong>b</strong>(ottom), <strong>t</strong>(op) and (for 3-D) <strong>u</strong>(p) codes. Add an
+optional <strong>+b</strong> to draw a cube of axes in perspective view. [WESN].</p>
 </dd>
 <dt id="term-MAP_FRAME_PEN"><strong>MAP_FRAME_PEN</strong></dt><dd><p>Pen attributes used to draw plain map frame [thicker,black].</p>
 </dd>
+<dt id="term-MAP_FRAME_PERCENT"><strong>MAP_FRAME_PERCENT</strong></dt><dd><p>Percentage of the fancy frame width to use for the internal checkerboard
+frame lines [100].</p>
+</dd>
 <dt id="term-MAP_FRAME_TYPE"><strong>MAP_FRAME_TYPE</strong></dt><dd><p>Choose between <strong>inside</strong>, <strong>plain</strong> and <strong>fancy</strong> (thick boundary,
-alternating black/white frame; append <strong>+</strong> for rounded corners)
+alternating black/white frame; append <strong>-rounded</strong> for rounded corners)
 [fancy]. For some map projections (e.g., Oblique Mercator), plain is
 the only option even if fancy is set as default. In general, fancy
 only applies to situations where the projected x and y directions
@@ -1071,12 +1081,12 @@ scale-factor or leave as default.</p>
 files and in command line parameters. This allows GMT to ensure
 that the PostScript output generates the correct characters on the
 plot. Choose from Standard, Standard+, ISOLatin1, ISOLatin1+, and
-ISO-8859-x (where x is in the ranges [1,10] or [13,15]). See
+ISO-8859-x (where x is in the ranges 1-11 or 13-16). See
 Appendix F for details [ISOLatin1+ (or Standard+)].  <strong>Note</strong>: Normally
 the character set is written as part of the PostScript header.  If
 you need to switch to another character set for a later overlay then
 you must use <strong>--PS_CHAR_ENCODING</strong>=<em>encoding</em> on the command line and
-not via gmt set.</p>
+not via gmt <a class="reference internal" href="gmtset.html"><span class="doc">gmtset</span></a>.  Finally, note 6, 8, and 11 do not work with standard fonts.</p>
 </dd>
 <dt id="term-PS_COLOR_MODEL"><strong>PS_COLOR_MODEL</strong></dt><dd><p>Determines whether PostScript output should use RGB, HSV, CMYK, or
 GRAY when specifying color [rgb]. Note if HSV is selected it does
@@ -1438,9 +1448,9 @@ correspond to 1800 through 1828. [1950].</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, The GMT Team.
+        &copy; Copyright 2021, The GMT Team.
       <span class="lastupdated">
-        Last updated on Dec 02, 2020.
+        Last updated on Jan 25, 2021.
       </span>
 
     </p>

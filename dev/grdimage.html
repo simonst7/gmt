@@ -33,7 +33,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -132,6 +131,7 @@
 <li class="toctree-l1"><a class="reference internal" href="debug.html">Debugging GMT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">GMT C API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="postscriptlight.html">PostScriptLight C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devdocs.html">Developer Documentation</a></li>
 </ul>
 
             
@@ -235,7 +235,7 @@
 [ <a class="reference internal" href="#i"><span> <strong>-I</strong></span></a></strong>[<em>intensfile</em>|<em>intensity</em>|<em>modifiers</em>] ]
 [ <a class="reference internal" href="#m"><span> <strong>-M</strong></span></a></strong> ]
 [ <a class="reference internal" href="#n"><span> <strong>-N</strong></span></a></strong> ]
-[ <a class="reference internal" href="#q"><span> <strong>-Q</strong></span></a></strong> ]
+[ <a class="reference internal" href="#q"><span> <strong>-Q</strong></span></a></strong>[<em>color</em>] ]
 [ <a class="reference internal" href="#r"><span> <strong>-R</strong></span></a></strong><em>west</em>/<em>east</em>/<em>south</em>/<em>north</em>[/<em>zmin</em>/<em>zmax</em>][<strong>+r</strong>][<strong>+u</strong><em>unit</em>] ]
 [ <a class="reference internal" href="#u"><span> <strong>-U</strong></span></a></strong>[<em>stamp</em>] ]
 [ <a class="reference internal" href="#v"><span> <strong>-V</strong></span></a></strong>[<em>level</em>] ]
@@ -280,8 +280,7 @@ than that implied by the extent of the grid.</p>
 <div class="section" id="required-arguments">
 <h2>Required Arguments<a class="headerlink" href="#required-arguments" title="Permalink to this headline">¶</a></h2>
 <dl class="simple">
-<dt><em>grid</em> | <em>image</em></dt><dd><p>2-D gridded data set or image to be plotted (See
-GRID FILE FORMATS below.)</p>
+<dt><em>grid</em> | <em>image</em></dt><dd><p>2-D gridded data set or image to be plotted (see <a class="reference internal" href="gmt.html#grd-inout-full"><span class="std std-ref">Grid File Formats</span></a>).</p>
 </dd>
 </dl>
 <span class="target" id="j"></span><dl class="simple">
@@ -363,7 +362,9 @@ for that module, or just give <strong>+d</strong> to select the
 default arguments (<strong>+a</strong>-45<strong>+nt</strong>1<strong>+m</strong>0). If you want a more
 specific intensity scenario then run <a class="reference internal" href="grdgradient.html"><span class="doc">grdgradient</span></a> separately first.
 If we should derive intensities from another file than <em>grid</em>, specify the
-file with suitable modifiers [Default is no illumination].</p>
+file with suitable modifiers [Default is no illumination].  <strong>Note</strong>: If
+the input data is an <em>image</em> then an <em>intensfile</em> or constant <em>intensity</em>
+must be provided.</p>
 </dd>
 </dl>
 <dl class="simple" id="m">
@@ -377,8 +378,10 @@ non-rectangular maps).</p>
 </dd>
 </dl>
 <dl class="simple" id="q">
-<dt><strong>-Q</strong></dt><dd><p>Make grid nodes with z = NaN transparent, using the color-masking
-feature in PostScript Level 3 (the PS device must support PS Level 3).</p>
+<dt><strong>-Q</strong>[<em>color</em>]</dt><dd><p>Make grid nodes with NaN values transparent, using the color-masking
+feature in PostScript Level 3 (the PS device must support PS Level 3).
+If input is instead an image then black pixels are set to be transparent;
+append an alternate color to select another pixel value to be transparent.</p>
 </dd>
 </dl>
 <span class="target" id="r"></span><dl class="simple">
@@ -433,14 +436,6 @@ any module-specific option (but not the GMT common options), then exit.</p>
 <dt><strong>--PAR</strong>=<em>value</em></dt><dd><p>Temporarily override a GMT default setting; repeatable. See <a class="reference internal" href="gmt.conf.html"><span class="doc">gmt.conf</span></a> for parameters.</p>
 </dd>
 </dl>
-</div>
-<div class="section" id="grid-file-formats">
-<h2>Grid File Formats<a class="headerlink" href="#grid-file-formats" title="Permalink to this headline">¶</a></h2>
-<p>By default GMT writes out grid as single precision floats in a
-COARDS-complaint netCDF file format. However, GMT is able to produce
-grid files in many other commonly used grid file formats and also
-facilitates so called “packing” of grids, writing out floating point
-data as 1- or 2-byte integers. <a class="reference internal" href="gmt.html#grd-inout-full"><span class="std std-ref">(more …)</span></a></p>
 </div>
 <div class="section" id="global-relief-datasets">
 <h2>Global Relief Datasets<a class="headerlink" href="#global-relief-datasets" title="Permalink to this headline">¶</a></h2>
@@ -711,9 +706,9 @@ CPTs.</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, The GMT Team.
+        &copy; Copyright 2021, The GMT Team.
       <span class="lastupdated">
-        Last updated on Dec 02, 2020.
+        Last updated on Jan 25, 2021.
       </span>
 
     </p>

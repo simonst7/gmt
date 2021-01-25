@@ -33,7 +33,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -132,6 +131,7 @@
 <li class="toctree-l1"><a class="reference internal" href="debug.html">Debugging GMT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">GMT C API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="postscriptlight.html">PostScriptLight C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devdocs.html">Developer Documentation</a></li>
 </ul>
 
             
@@ -293,7 +293,8 @@ where <em>dpu</em> is the dots-per-unit pixel density (pixel density is set auto
 <dl class="simple" id="n">
 <dt><strong>-N</strong><em>prefix</em></dt><dd><p>Determines the name of the final movie file and a sub-directory with frame images (but see <strong>-W</strong>).
 <strong>Note</strong>: If the subdirectory exist then we exit immediately.  You are therefore required to remove any
-old directory by that name first.  This is done to prevent the accidental loss of valuable data.</p>
+old directory by that name first.  This is done to prevent the accidental loss of valuable data.
+You can prevent this issue by using <strong>-Z</strong> to delete the directory after a successful run.</p>
 </dd>
 </dl>
 <dl class="simple" id="t">
@@ -537,6 +538,12 @@ differently per frame (using parameters in the <em>timefile</em>) and displaying
 </div>
 <div class="section" id="your-canvas">
 <h2>Your Canvas<a class="headerlink" href="#your-canvas" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center" id="id3">
+<a class="reference internal image-reference" href="_images/GMT_movie_canvas.png"><img alt="_images/GMT_movie_canvas.png" src="_images/GMT_movie_canvas.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-text">The <strong>MOVIE_WIDTH</strong> and <strong>MOVIE_HEIGHT</strong> parameters reflect your canvas dimension.  You can use the
+regular <strong>-X</strong> and <strong>-Y</strong> options to set a logical origin for your intended plot [72p, 72p] and use your
+projection parameters (<strong>-J</strong>) to indicate the area selected for plotting (green).</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
 <p>As you can see from <strong>-C</strong>, unless you specified a custom format you are given a canvas size that is either 24 x 13.5 cm (16:9)
 or 24 x 18 cm (4:3).  If your <a class="reference internal" href="gmt.conf.html#term-PROJ_LENGTH_UNIT"><span class="xref std std-term">PROJ_LENGTH_UNIT</span></a> setting is inch then the custom canvas sizes are just
 slightly (1.6%) larger than the corresponding SI sizes (9.6 x 5.4” or 9.6 x 7.2”); this has no effect on the size of the movie
@@ -624,10 +631,10 @@ to named files.</p>
 </div>
 <div class="section" id="progress-indicators">
 <h2>Progress Indicators<a class="headerlink" href="#progress-indicators" title="Permalink to this headline">¶</a></h2>
-<div class="figure align-center" id="id3">
+<div class="figure align-center" id="id4">
 <a class="reference internal image-reference" href="_images/GMT_movie_progress.png"><img alt="_images/GMT_movie_progress.png" src="_images/GMT_movie_progress.png" style="width: 500px;" /></a>
 <p class="caption"><span class="caption-text">The six types of movie progress indicators.  All have default sizes, placements, colors and pens (shown)
-but these can be overridden by the corresponding modifiers (see below).</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+but these can be overridden by the corresponding modifiers (see below).</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 <p>The letters a-f select one of the six progress indicators shown above.
 Indicator a) needs a static [lightgreen] and moving [lightred]
@@ -652,10 +659,10 @@ If no size is specified (<strong>+w</strong>) then we default to 5% of canvas wi
 </div>
 <div class="section" id="title-sequence-and-fading">
 <h2>Title Sequence and Fading<a class="headerlink" href="#title-sequence-and-fading" title="Permalink to this headline">¶</a></h2>
-<div class="figure align-center" id="id4">
+<div class="figure align-center" id="id5">
 <a class="reference internal image-reference" href="_images/GMT_title_fade.png"><img alt="_images/GMT_title_fade.png" src="_images/GMT_title_fade.png" style="width: 500px;" /></a>
 <p class="caption"><span class="caption-text">The fade-level (0 means black, 100 means normal visibility) for the complete movie, including
-an optional title sequence.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+an optional title sequence.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
 <p>The complete movie may have an optional leading title sequence (<strong>-E</strong>) of a given <em>duration</em>. A short section
 at the beginning and/or end of this duration may be designated to fade in/out via the designated fade
@@ -768,9 +775,9 @@ ffmpeg -i top.mp4 -i bottom.mp4 -filter_complex <span class="nv">vstack</span><s
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, The GMT Team.
+        &copy; Copyright 2021, The GMT Team.
       <span class="lastupdated">
-        Last updated on Dec 02, 2020.
+        Last updated on Jan 25, 2021.
       </span>
 
     </p>

@@ -33,7 +33,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -132,6 +131,7 @@
 <li class="toctree-l1"><a class="reference internal" href="debug.html">Debugging GMT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">GMT C API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="postscriptlight.html">PostScriptLight C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devdocs.html">Developer Documentation</a></li>
 </ul>
 
             
@@ -269,7 +269,7 @@ If not a file, it is interpreted as a numerical constant or a
 special symbol (see below).</p>
 </dd>
 <dt><em>outgrid</em></dt><dd><p>The name of a 2-D grid file that will hold the final result. (See
-GRID FILE FORMATS below).</p>
+<a class="reference internal" href="gmt.html#grd-inout-full"><span class="std std-ref">Grid File Formats</span></a>).</p>
 </dd>
 </dl>
 </div>
@@ -302,8 +302,8 @@ requested not be available [abort if not found].</p>
 </dd>
 </dl>
 <dl class="simple" id="i">
-<dt><strong>-I</strong><em>xinc</em>[<strong>+e</strong>|<strong>n</strong>][/<em>yinc</em>[<strong>+e</strong>|<strong>n</strong>]]</dt><dd><p><em>x_inc</em> [and optionally <em>y_inc</em>] is the grid spacing. Optionally,
-append a suffix modifier. <strong>Geographical (degrees) coordinates</strong>: Append
+<dt><strong>-I</strong><em>xinc</em>[<strong>+e</strong>|<strong>n</strong>][/<em>yinc</em>[<strong>+e</strong>|<strong>n</strong>]]</dt><dd><p><em>x_inc</em> [and optionally <em>y_inc</em>] is the grid spacing. <strong>Geographical
+(degrees) coordinates</strong>: Optionally, append a increment unit. Choose among
 <strong>m</strong> to indicate arc minutes or <strong>s</strong> to indicate arc seconds. If one
 of the units <strong>e</strong>, <strong>f</strong>, <strong>k</strong>, <strong>M</strong>, <strong>n</strong> or <strong>u</strong> is appended
 instead, the increment is assumed to be given in meter, foot, km, Mile,
@@ -317,11 +317,12 @@ adjusted to fit exactly the given increment [by default the increment
 may be adjusted slightly to fit the given domain]. Finally, instead of
 giving an increment you may specify the <em>number of nodes</em> desired by
 appending <strong>+n</strong> to the supplied integer argument; the increment is then
-recalculated from the number of nodes and the domain. The resulting
-increment value depends on whether you have selected a
+recalculated from the number of nodes, the <em>registration</em>, and the domain.
+The resulting increment value depends on whether you have selected a
 gridline-registered or pixel-registered grid; see <a class="reference internal" href="cookbook/file-formats.html#gmt-file-formats"><span class="std std-ref">GMT File Formats</span></a> for
-details. <strong>Note</strong>: If <strong>-R</strong><em>grdfile</em> is used then the grid spacing (and registration) have
-already been initialized; use <strong>-I</strong> (and <strong>-r</strong>) to override the values.</p>
+details. <strong>Note</strong>: If <strong>-R</strong><em>grdfile</em> is used then the grid spacing and
+the registration have already been initialized; use <strong>-I</strong> and <strong>-r</strong>
+to override these values.</p>
 </dd>
 </dl>
 <dl class="simple" id="m">
@@ -1473,14 +1474,6 @@ precision once GMT operates on the grid or writes out new grids. To
 limit loss of precision when processing data you should always consider
 normalizing the data prior to processing.</p>
 </div>
-<div class="section" id="grid-file-formats">
-<h2>Grid File Formats<a class="headerlink" href="#grid-file-formats" title="Permalink to this headline">¶</a></h2>
-<p>By default GMT writes out grid as single precision floats in a
-COARDS-complaint netCDF file format. However, GMT is able to produce
-grid files in many other commonly used grid file formats and also
-facilitates so called “packing” of grids, writing out floating point
-data as 1- or 2-byte integers. <a class="reference internal" href="gmt.html#grd-inout-full"><span class="std std-ref">(more …)</span></a></p>
-</div>
 <div class="section" id="geographical-and-time-coordinates">
 <h2>Geographical And Time Coordinates<a class="headerlink" href="#geographical-and-time-coordinates" title="Permalink to this headline">¶</a></h2>
 <p>When the output grid type is netCDF, the coordinates will be labeled
@@ -1658,9 +1651,9 @@ Publishing Corp.</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, The GMT Team.
+        &copy; Copyright 2021, The GMT Team.
       <span class="lastupdated">
-        Last updated on Dec 02, 2020.
+        Last updated on Jan 25, 2021.
       </span>
 
     </p>

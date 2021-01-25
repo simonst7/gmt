@@ -33,7 +33,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -132,6 +131,7 @@
 <li class="toctree-l1"><a class="reference internal" href="debug.html">Debugging GMT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">GMT C API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="postscriptlight.html">PostScriptLight C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devdocs.html">Developer Documentation</a></li>
 </ul>
 
             
@@ -287,7 +287,7 @@ line will be used.</p>
 <dl class="simple">
 <dt><em>grid</em></dt><dd><p>Names of one or more grid files used to derive the color palette
 table. All grids need to have the same size and dimensions. (See
-GRID FILE FORMATS below).</p>
+<a class="reference internal" href="gmt.html#grd-inout-full"><span class="std std-ref">Grid File Formats</span></a>).</p>
 </dd>
 </dl>
 </div>
@@ -364,7 +364,7 @@ specified by the parameters <a class="reference internal" href="gmt.conf.html#te
 <a class="reference internal" href="gmt.conf.html#term-COLOR_FOREGROUND"><span class="xref std std-term">COLOR_FOREGROUND</span></a>.
 Append <strong>z</strong> to reverse the sign of z-values in the color table.  Note that
 this change of <em>z</em>-direction happens before <strong>-G</strong> and <strong>-S</strong> values are used
-so the latter much be compatible with the changed <em>z</em>-range. See also <a class="reference internal" href="cookbook/features.html#manipulating-cpts"><span class="std std-ref">Manipulating CPTs</span></a></p>
+so the latter must be compatible with the changed <em>z</em>-range. See also <a class="reference internal" href="cookbook/features.html#manipulating-cpts"><span class="std std-ref">Manipulating CPTs</span></a></p>
 </dd>
 </dl>
 <dl class="simple" id="l">
@@ -451,14 +451,6 @@ any module-specific option (but not the GMT common options), then exit.</p>
 <dt><strong>-o</strong><em>cols</em>[,…][,<strong>t</strong>[<em>word</em>]] <a class="reference internal" href="gmt.html#ocols-full"><span class="std std-ref">(more …)</span></a></dt><dd><p>Select output columns (0 is first column; <strong>t</strong> is trailing text, append <em>word</em> to write one word only).</p>
 </dd>
 </dl>
-</div>
-<div class="section" id="grid-file-formats">
-<h2>Grid File Formats<a class="headerlink" href="#grid-file-formats" title="Permalink to this headline">¶</a></h2>
-<p>By default GMT writes out grid as single precision floats in a
-COARDS-complaint netCDF file format. However, GMT is able to produce
-grid files in many other commonly used grid file formats and also
-facilitates so called “packing” of grids, writing out floating point
-data as 1- or 2-byte integers. <a class="reference internal" href="gmt.html#grd-inout-full"><span class="std std-ref">(more …)</span></a></p>
 </div>
 <div class="section" id="notes-on-transparency">
 <h2>Notes on Transparency<a class="headerlink" href="#notes-on-transparency" title="Permalink to this headline">¶</a></h2>
@@ -592,9 +584,9 @@ CPTs.</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, The GMT Team.
+        &copy; Copyright 2021, The GMT Team.
       <span class="lastupdated">
-        Last updated on Dec 02, 2020.
+        Last updated on Jan 25, 2021.
       </span>
 
     </p>

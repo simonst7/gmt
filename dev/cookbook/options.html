@@ -33,7 +33,6 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
@@ -166,14 +165,15 @@
 <li class="toctree-l2"><a class="reference internal" href="predefined-patterns.html">10. Predefined Bit and Hachure Patterns in GMT</a></li>
 <li class="toctree-l2"><a class="reference internal" href="octal-codes.html">11. Chart of Octal Codes for Characters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="postscript-fonts.html">12. PostScript Fonts Used by GMT</a></li>
-<li class="toctree-l2"><a class="reference internal" href="colorspace.html">13. Color Space: The Final Frontier</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data-filtering.html">14. Filtering of Data in GMT</a></li>
-<li class="toctree-l2"><a class="reference internal" href="non-unix-platforms.html">15. GMT on non-UNIX Platforms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpts.html">16. Of Colors and Color Legends</a></li>
-<li class="toctree-l2"><a class="reference internal" href="custom-symbols.html">17. Custom Plot Symbols</a></li>
-<li class="toctree-l2"><a class="reference internal" href="contour-annotations.html">18. Annotation of Contours and “Quoted Lines”</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ogrgmt-format.html">19. The GMT Vector Data Format for OGR Compatibility</a></li>
-<li class="toctree-l2"><a class="reference internal" href="one-liner.html">20. GMT Modern Mode One-line Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gmt-latex.html">13. Using LaTeX Expressions in GMT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colorspace.html">14. Color Systems and Artificial Illumination</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-filtering.html">15. Filtering of Data in GMT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="non-unix-platforms.html">16. GMT on non-UNIX Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpts.html">17. Of Colors and Color Legends</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-symbols.html">18. Custom Plot Symbols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contour-annotations.html">19. Annotation of Contours and “Quoted Lines”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ogrgmt-format.html">20. The GMT Vector Data Format for OGR Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="one-liner.html">21. GMT Modern Mode One-line Commands</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../datasets.html">Datasets</a></li>
@@ -200,6 +200,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../debug.html">Debugging GMT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">GMT C API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../postscriptlight.html">PostScriptLight C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devdocs.html">Developer Documentation</a></li>
 </ul>
 
             
@@ -572,12 +573,12 @@ but most examples of its usage are actually quite simple. We distinguish
 between two sets of information: Frame settings and Axes parameters.  These
 are set separately by their own <strong>-B</strong> invocations; hence multiple <strong>-B</strong>
 specifications may be specified. The frame settings covers things such
-as which axes should be plotted, canvas fill, plot title, and what type
+as which axes should be plotted, canvas fill, plot title (and subtitle), and what type
 of gridlines be drawn, whereas the Axes settings deal with annotation,
 tick, and gridline intervals, axes labels, and annotation units.</p>
 <p>The Frame settings are specified by</p>
 <ul class="simple">
-<li><p><strong>-B</strong>[<em>axes</em>][<strong>+b</strong>][<strong>+g</strong><em>fill</em>][<strong>+i</strong>[<em>val</em>]][<strong>+n</strong>][<strong>+o</strong><em>lon/lat</em>][<strong>+t</strong><em>title</em>][<strong>+w</strong>[<em>pen</em>]][<strong>+x</strong><em>fill</em>][<strong>+y</strong><em>fill</em>][<strong>+z</strong><em>fill</em>]</p></li>
+<li><p><strong>-B</strong>[<em>axes</em>][<strong>+b</strong>][<strong>+g</strong><em>fill</em>][<strong>+i</strong>[<em>val</em>]][<strong>+n</strong>][<strong>+o</strong><em>lon/lat</em>][<strong>+s</strong><em>subtitle</em>][<strong>+t</strong><em>title</em>][<strong>+w</strong>[<em>pen</em>]][<strong>+x</strong><em>fill</em>][<strong>+y</strong><em>fill</em>][<strong>+z</strong><em>fill</em>]</p></li>
 </ul>
 <p>Here, the optional <em>axes</em> dictates which of the axes should be drawn
 and possibly annotated.  By default, all four map boundaries (or plot axes)
@@ -608,7 +609,11 @@ to produce oblique gridlines about another pole you can append <strong>+o</stron
 to change this behavior (the modifier is ignored if no gridlines are requested).
 Append <strong>+n</strong> to have no frame and annotations at all [Default is controlled by the codes].
 Finally, you may optionally add <strong>+t</strong><em>title</em> to place a title that
-will appear centered above the plot frame.</p>
+will appear centered above the plot frame; optionally also add a <em>subtitle</em> via <strong>+s</strong>.
+<strong>Note</strong>: Both <em>title</em> and <em>subtitle</em> may be set over multiple lines by breaking them up
+using the markers ‘&#64;^’ or ‘&lt;break&gt;’.  To include LaTeX code as part of a single-line title or subtitle,
+enclose the expression with &#64;[ markers (or alternatively &lt;math&gt; … &lt;/math&gt;).
+(<strong>Note</strong>: Requires <code class="docutils literal notranslate"><span class="pre">latex</span></code> and <code class="docutils literal notranslate"><span class="pre">dvips</span></code> to be installed).</p>
 <p>The Axes settings are specified by</p>
 <ul class="simple">
 <li><p><strong>-B</strong>[<strong>p</strong>|<strong>s</strong>][<strong>x</strong>|<strong>y</strong>|<strong>z</strong>]<em>intervals</em>[<strong>+a</strong><em>angle</em>|<strong>n</strong>|<strong>p</strong>][<strong>+l</strong><em>label</em>][<strong>+p</strong><em>prefix</em>][<strong>+u</strong><em>unit</em>]</p></li>
@@ -631,6 +636,9 @@ just append <strong>+l</strong><em>label</em> (Cartesian projections only). Use 
 force a horizontal label for <em>y</em>-axes (useful for very short labels).
 For Cartesian axes you may specify an alternate via <strong>+s</strong> which is used for
 right or upper axis axis label (with any <strong>+l</strong> label used for left and bottom axes).
+To include LaTeX code as part of a label, enclose the expression with &#64;[ markers
+(or alternatively &lt;math&gt; … &lt;/math&gt;)
+(<strong>Note</strong>: Requires <code class="docutils literal notranslate"><span class="pre">latex</span></code> and <code class="docutils literal notranslate"><span class="pre">dvips</span></code> to be installed).
 If the axis annotation should have a leading text prefix (e.g., dollar sign for those
 plots of your net worth) you can append <strong>+p</strong><em>prefix</em>. For geographic maps
 the addition of degree symbols, etc. is automatic (and controlled by the GMT
@@ -1573,10 +1581,13 @@ levels of objects. The <strong>-t</strong> option allows you to change the
 transparency level for the current overlay by appending a percentage in
 the 0-100 range; the default is 0, or opaque. Transparency may also be
 controlled on a feature by feature basis when setting color or fill (see
-section <a class="reference internal" href="features.html#gfill-attrib"><span class="std std-ref">Specifying area fill attributes</span></a>).  Finally, the modules
+section <a class="reference internal" href="features.html#gfill-attrib"><span class="std std-ref">Specifying area fill attributes</span></a>).  For separate transparency for fill and stroke,
+append /<em>transp2</em> as well. <strong>Note</strong>: The modules
 <a class="reference internal" href="../plot.html"><span class="doc">plot</span></a>, <a class="reference internal" href="../plot3d.html"><span class="doc">plot3d</span></a>, and <a class="reference internal" href="../text.html"><span class="doc">text</span></a> can all change transparency
 on a record-by-record basis if <strong>-t</strong> is given without argument and the
-input file supplies variable transparencies as the last numerical column value.</p>
+input file supplies variable transparencies as the last numerical column value(s).
+Use the <strong>+f</strong> and <strong>+s</strong> modifiers to indicate which transparency is provided
+or if we expect one or two transparencies.</p>
 </div>
 <div class="section" id="selecting-number-of-cpu-cores-the-x-option">
 <span id="option-x-core"></span><h2><span class="section-number">4.25. </span>Selecting number of CPU cores: The <strong>-x</strong> option<a class="headerlink" href="#selecting-number-of-cpu-cores-the-x-option" title="Permalink to this headline">¶</a></h2>
@@ -1659,9 +1670,9 @@ context they are considered “other”. Thus, when we refer to
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, The GMT Team.
+        &copy; Copyright 2021, The GMT Team.
       <span class="lastupdated">
-        Last updated on Dec 02, 2020.
+        Last updated on Jan 25, 2021.
       </span>
 
     </p>

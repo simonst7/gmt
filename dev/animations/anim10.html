@@ -33,7 +33,6 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
@@ -132,6 +131,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../debug.html">Debugging GMT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">GMT C API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../postscriptlight.html">PostScriptLight C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devdocs.html">Developer Documentation</a></li>
 </ul>
 
             
@@ -275,7 +275,7 @@ cat <span class="s">&lt;&lt; EOF &gt; main.sh</span>
 <span class="s">gmt end</span>
 <span class="s">EOF</span>
 gmt movie main.sh -C540p -Njitter_H0 -Tangles.txt -Sbpre.sh -D24 -Fmp4 -G+p2p -Z -W -Lc0+jTL+t%05.1f+o1c -Ls<span class="s2">&quot;0 sub-pixels&quot;</span>+jBR+o1c
-<span class="k">for</span> H in <span class="m">2</span> <span class="m">4</span> <span class="m">8</span><span class="p">;</span> <span class="k">do</span>
+<span class="k">for</span> H <span class="k">in</span> <span class="m">2</span> <span class="m">4</span> <span class="m">8</span><span class="p">;</span> <span class="k">do</span>
 	gmt movie main.sh -C540p -Njitter_H<span class="si">${</span><span class="nv">H</span><span class="si">}</span> -Tangles.txt -Sbpre.sh -D24 -Fmp4 -G+p2p -H<span class="si">${</span><span class="nv">H</span><span class="si">}</span> -Z -W -Lc0+jTL+t%05.1f+o1c -Ls<span class="s2">&quot;</span><span class="si">${</span><span class="nv">H</span><span class="si">}</span><span class="s2"> sub-pixels&quot;</span>+jBR+o1c
 <span class="k">done</span>
 <span class="c1"># 4. Assemble the four movie frames into a 2x2 HD layout via ffmpeg</span>
@@ -310,9 +310,9 @@ rm -f top.mp4 bot.mp4 jitter_H?.mp4 main.sh pre.sh angles.txt
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, The GMT Team.
+        &copy; Copyright 2021, The GMT Team.
       <span class="lastupdated">
-        Last updated on Dec 02, 2020.
+        Last updated on Jan 25, 2021.
       </span>
 
     </p>

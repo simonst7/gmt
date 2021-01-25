@@ -33,7 +33,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -42,7 +41,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="gmtwhich" href="gmtwhich.html" />
-    <link rel="prev" title="gmtspatial" href="gmtspatial.html" />
+    <link rel="prev" title="gmtsplit" href="gmtsplit.html" />
 
 
   <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
@@ -132,6 +131,7 @@
 <li class="toctree-l1"><a class="reference internal" href="debug.html">Debugging GMT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">GMT C API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="postscriptlight.html">PostScriptLight C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devdocs.html">Developer Documentation</a></li>
 </ul>
 
             
@@ -236,6 +236,7 @@
 [ <strong>-g</strong><a class="reference internal" href="gmt.html#g-full"><span class="std std-ref">gaps</span></a> ]
 [ <strong>-h</strong><a class="reference internal" href="gmt.html#h-full"><span class="std std-ref">headers</span></a> ]
 [ <strong>-i</strong><a class="reference internal" href="gmt.html#icols-full"><span class="std std-ref">flags</span></a> ]
+[ <strong>-j</strong><a class="reference internal" href="gmt.html#distcalc-full"><span class="std std-ref">flags</span></a> ]
 [ <strong>-o</strong><a class="reference internal" href="gmt.html#ocols-full"><span class="std std-ref">flags</span></a> ]
 [ <strong>-q</strong><a class="reference internal" href="gmt.html#q-full"><span class="std std-ref">flags</span></a> ]
 [ <strong>-:</strong>[<strong>i</strong>|<strong>o</strong>] ]
@@ -323,7 +324,8 @@ for the same translation for all input points, or just append
 from the third and fourth data column in the file, and <strong>x</strong> for cross-product.
 If <strong>-T</strong> is not given then no transformation takes place; the
 output is determined by other options such as <strong>-A</strong>, <strong>-C</strong>,
-<strong>-E</strong>, and <strong>-N</strong>.</p>
+<strong>-E</strong>, and <strong>-N</strong>. <strong>Note</strong>: For <strong>-Tt</strong> and geographic coordinates we will
+perform a great circle calculation unless <strong>-je</strong> is selected.</p>
 </dd>
 </dl>
 <span class="target" id="v"></span><dl class="simple">
@@ -356,6 +358,10 @@ output is determined by other options such as <strong>-A</strong>, <strong>-C</s
 </dl>
 <dl class="simple">
 <dt><strong>-i</strong><em>cols</em>[<strong>+l</strong>][<strong>+s</strong><em>scale</em>][<strong>+o</strong><em>offset</em>][,<em>…</em>][,<strong>t</strong>[<em>word</em>]] <a class="reference internal" href="gmt.html#icols-full"><span class="std std-ref">(more …)</span></a></dt><dd><p>Select input columns and transformations (0 is first column, <strong>t</strong> is trailing text, append <em>word</em> to read one word only).</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt><strong>-je</strong>|<strong>f</strong>|<strong>g</strong> <a class="reference internal" href="gmt.html#distcalc-full"><span class="std std-ref">(more …)</span></a></dt><dd><p>Determine how spherical distances are calculated.</p>
 </dd>
 </dl>
 <dl class="simple">
@@ -447,8 +453,13 @@ the point -30/60 at an azimuth of 105 degrees, use:</p>
 </pre></div>
 </div>
 <p>To translate all locations in the geographic file points.txt
-by 65 km to the NE, try:</p>
+by 65 km to the NE on a spherical Earth, try:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt vector points -Tt45/65k -fg &gt; shifted.txt
+</pre></div>
+</div>
+<p>To determine the point that is 23 nautical miles along a geodesic
+with a bearing of 310 degrees from the origin at (8E, 50N), try:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="m">8</span> <span class="m">50</span> <span class="p">|</span> gmt vector -Tt310/23n -je
 </pre></div>
 </div>
 </div>
@@ -474,7 +485,7 @@ reconstructions, see the GMT “spotter” supplement.</p>
         <a href="gmtwhich.html" class="btn btn-neutral float-right" title="gmtwhich" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="gmtspatial.html" class="btn btn-neutral float-left" title="gmtspatial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="gmtsplit.html" class="btn btn-neutral float-left" title="gmtsplit" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -484,9 +495,9 @@ reconstructions, see the GMT “spotter” supplement.</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, The GMT Team.
+        &copy; Copyright 2021, The GMT Team.
       <span class="lastupdated">
-        Last updated on Dec 02, 2020.
+        Last updated on Jan 25, 2021.
       </span>
 
     </p>

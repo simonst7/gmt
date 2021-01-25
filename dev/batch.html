@@ -33,7 +33,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -132,6 +131,7 @@
 <li class="toctree-l1"><a class="reference internal" href="debug.html">Debugging GMT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">GMT C API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="postscriptlight.html">PostScriptLight C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devdocs.html">Developer Documentation</a></li>
 </ul>
 
             
@@ -465,12 +465,12 @@ build the pre.sh, main.sh, and post.sh scripts on the fly, hence we need to esca
 start with a dollar sign that we need to be written verbatim). At the end of the execution we find 20 grids
 (e.g., such as filter_07.grd), as well as the filter_std.grd file obtained by stacking all the individual
 scripts and computing a standard deviation. The information needed to do all of this is hidden from the user;
-the actual batch scripts that we execute are derived from the user-provided main.sh script and <strong>batch*</strong>
+the actual batch scripts that we execute are derived from the user-provided main.sh script and <strong>batch</strong>
 supplies the extra machinery. The <strong>batch</strong> module automatically manages the parallel execution loop over all
 jobs using all available cores and launches new jobs as old ones complete.</p>
 <p>As another example, we get a list of all European countries and make a simple coast plot of each of them,
 placing their name in the title and the 2-character ISO code in the upper left corner, then in postflight
-we combine all the individual PDFs into a single file and delete them:</p>
+we combine all the individual PDFs into a single PDF file and delete the individual files:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat <span class="s">&lt;&lt; EOF &gt; pre.sh</span>
 <span class="s">gmt begin</span>
 <span class="s">    gmt coast -E=EU+l &gt; countries.txt</span>
@@ -489,7 +489,7 @@ cat <span class="s">&lt;&lt; EOF &gt; post.sh</span>
 gmt batch main.sh -Sbpre.sh -Sfpost.sh -Tcountries.txt+w<span class="s2">&quot;\t&quot;</span> -Ncountries -V -W -Zs
 </pre></div>
 </div>
-<p>Here, the postflight script is not even a GMT script; it simply runs gs and deletes what we don’t want.</p>
+<p>Here, the postflight script is not even a GMT script; it simply runs gs (Ghostscript) and deletes what we don’t want to keep.</p>
 </div>
 <div class="section" id="see-also">
 <h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
@@ -521,9 +521,9 @@ gmt batch main.sh -Sbpre.sh -Sfpost.sh -Tcountries.txt+w<span class="s2">&quot;\
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, The GMT Team.
+        &copy; Copyright 2021, The GMT Team.
       <span class="lastupdated">
-        Last updated on Dec 02, 2020.
+        Last updated on Jan 25, 2021.
       </span>
 
     </p>

@@ -33,7 +33,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -132,6 +131,7 @@
 <li class="toctree-l1"><a class="reference internal" href="debug.html">Debugging GMT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">GMT C API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="postscriptlight.html">PostScriptLight C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devdocs.html">Developer Documentation</a></li>
 </ul>
 
             
@@ -376,7 +376,9 @@ reference point for all groups.</p>
 Note that this module will search for <strong>-G</strong> and <strong>-W</strong> strings in all the
 segment headers and let any values thus found over-ride the command line settings.
 If <strong>-Z</strong> is set, use <strong>-G+z</strong> to assign fill color via <strong>-C</strong><em>cpt</em> and the
-<em>z</em>-values obtained.</p>
+<em>z</em>-values obtained. Finally, if <em>fill</em> = <em>auto</em>[<em>-segment</em>] or <em>auto-table</em> then
+we will cycle through the fill colors implied by <a class="reference internal" href="gmt.conf.html#term-COLOR_SET"><span class="xref std std-term">COLOR_SET</span></a> and change on a per-segment
+or per-table basis.  Any <em>transparency</em> setting is unchanged.</p>
 </dd>
 </dl>
 <dl class="simple" id="i">
@@ -723,8 +725,8 @@ beginning of the front by that amount [0]. The chosen symbol is drawn
 with the same pen as set for the line (i.e., via <strong>-W</strong>). To use an
 alternate pen, append <strong>+p</strong><em>pen</em>. To skip the outline, just use
 <strong>+p</strong> with no argument.  To make the main front line invisible, add <strong>+i</strong>.  <strong>Note</strong>:
-By placing <strong>-Sf</strong> options in the segment header you can change the front
-types on a segment-by-segment basis.</p>
+By placing <strong>-Sf</strong> options in the segment headers that differ from the one on
+the command line you can change the front types on a segment-by-segment basis.</p>
 </dd>
 </dl>
 <p>The next type of embellished line is called a <em>quoted</em> line, which is our term for
@@ -879,8 +881,8 @@ append two text strings separated by comma
 </dd>
 </dl>
 </div></blockquote>
-<p><strong>Note</strong>: By placing <strong>-Sq</strong> options in the segment header you can change
-the quoted text attributes on a segment-by-segment basis.</p>
+<p><strong>Note</strong>: By placing <strong>-Sq</strong> options in the segment headers that differ from the one on
+the command line you can change the quoted text attributes on a segment-by-segment basis.</p>
 </dd>
 </dl>
 <p>The final type of embellished line is called a <em>decorated</em> line (<strong>-S~</strong>).  It is a hybrid
@@ -974,8 +976,8 @@ symbol angles [Default is 10].</p>
 </dl>
 </div></blockquote>
 <p>If neither <strong>+g</strong> nor <strong>+p</strong> are set we select the default pen outline (<a class="reference internal" href="gmt.conf.html#term-MAP_DEFAULT_PEN"><span class="xref std std-term">MAP_DEFAULT_PEN</span></a>).
-<strong>Note</strong>: By placing <strong>-S~</strong> options in the segment header you can change
-the decorated lines on a segment-by-segment basis.</p>
+<strong>Note</strong>: By placing <strong>-S~</strong> options in the segment headers that differ from the one on
+the command line you can change the decorated lines on a segment-by-segment basis.</p>
 </dd>
 </dl>
 </dd>
@@ -1011,7 +1013,9 @@ Because <strong>+v</strong> may take additional modifiers it must necessarily be
 at the end of the pen specification.
 See the <a class="reference internal" href="#vector-attributes">Vector Attributes</a> for more information.
 If <strong>-Z</strong> is set, then append <strong>+z</strong> to <strong>-W</strong> to assign pen color via <strong>-C</strong><em>cpt</em> and the
-<em>z</em>-values obtained.</p>
+<em>z</em>-values obtained.  Finally, if pen <em>color</em> = <em>auto</em>[<em>-segment</em>] or <em>auto-table</em> then
+we will cycle through the pen colors implied by <a class="reference internal" href="gmt.conf.html#term-COLOR_SET"><span class="xref std std-term">COLOR_SET</span></a> and change on a per-segment
+or per-table basis.  The <em>width</em>, <em>style</em>, or <em>transparency</em> settings are unchanged.</p>
 </dd>
 </dl>
 <p id="x"><strong>-X</strong>[<strong>a</strong>|<strong>c</strong>|<strong>f</strong>|<strong>r</strong>][<em>xshift</em>]</p>
@@ -1403,9 +1407,9 @@ to supply a legend size (i.e., length of a line symbol) via the <strong>+S</stro
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, The GMT Team.
+        &copy; Copyright 2021, The GMT Team.
       <span class="lastupdated">
-        Last updated on Dec 02, 2020.
+        Last updated on Jan 25, 2021.
       </span>
 
     </p>

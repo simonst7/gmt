@@ -33,7 +33,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -132,6 +131,7 @@
 <li class="toctree-l1"><a class="reference internal" href="debug.html">Debugging GMT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">GMT C API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="postscriptlight.html">PostScriptLight C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devdocs.html">Developer Documentation</a></li>
 </ul>
 
             
@@ -233,14 +233,16 @@
 [ <a class="reference internal" href="#f"><span> <strong>-F</strong></span></a></strong>[<strong>+a</strong>[<em>angle</em>]][<strong>+c</strong>[<em>justify</em>]][<strong>+f</strong>[<em>font</em>]][<strong>+j</strong>[<em>justify</em>]][<strong>+h</strong>|<strong>l</strong>|<strong>r</strong>[<em>first</em>] |<strong>t</strong><em>text</em>|<strong>z</strong>[<em>format</em>]] ]
 [ <a class="reference internal" href="#g"><span> <strong>-G</strong></span></a></strong>[<em>fill</em>][<strong>+n</strong>] ]
 [ <a class="reference internal" href="#k"><span> <strong>-K</strong></span></a></strong> ]
-[ <a class="reference internal" href="#l"><span> <strong>-L</strong></span></a></strong> ] [ <a class="reference internal" href="#m"><span> <strong>-M</strong></span></a></strong> ] [ <a class="reference internal" href="#n"><span> <strong>-N</strong></span></a></strong> ] [ <a class="reference internal" href="#o"><span> <strong>-O</strong></span></a></strong> ] [ <a class="reference internal" href="#p"><span> <strong>-P</strong></span></a></strong> ]
+[ <a class="reference internal" href="#l"><span> <strong>-L</strong></span></a></strong> ] [ <a class="reference internal" href="#m"><span> <strong>-M</strong></span></a></strong> ] [ <a class="reference internal" href="#n"><span> <strong>-N</strong></span></a></strong> ]
+[ <a class="reference internal" href="#o"><span> <strong>-O</strong></span></a></strong> ] [ <a class="reference internal" href="#p"><span> <strong>-P</strong></span></a></strong> ]
 [ <a class="reference internal" href="#q"><span> <strong>-Q</strong></span></a></strong><strong>l</strong>|<strong>u</strong> ]
 [ <a class="reference internal" href="#u"><span> <strong>-U</strong></span></a></strong>[<em>stamp</em>] ]
 [ <a class="reference internal" href="#v"><span> <strong>-V</strong></span></a></strong>[<em>level</em>] ]
 [ <a class="reference internal" href="#w"><span> <strong>-W</strong></span></a></strong><em>pen</em> ]
 [ <a class="reference internal" href="#x"><span> <strong>-X</strong></span></a></strong>[<strong>a</strong>|<strong>c</strong>|<strong>f</strong>|<strong>r</strong>][<em>xshift</em>] ]
 [ <a class="reference internal" href="#y"><span> <strong>-Y</strong></span></a></strong>[<strong>a</strong>|<strong>c</strong>|<strong>f</strong>|<strong>r</strong>][<em>yshift</em>] ]
-[ <a class="reference internal" href="#z"><span> <strong>-Z</strong></span></a></strong> ] [ <strong>-a</strong><em>col</em>=<em>name</em>[…] ]
+[ <a class="reference internal" href="#z"><span> <strong>-Z</strong></span></a></strong> ]
+[ <strong>-a</strong><em>col</em>=<em>name</em>[…] ]
 [ <strong>-e</strong><a class="reference internal" href="gmt.html#e-full"><span class="std std-ref">regexp</span></a> ]
 [ <strong>-f</strong><a class="reference internal" href="gmt.html#f-full"><span class="std std-ref">flags</span></a> ]
 [ <strong>-h</strong><a class="reference internal" href="gmt.html#h-full"><span class="std std-ref">headers</span></a> ]
@@ -274,22 +276,12 @@ Appendix <a class="reference internal" href="cookbook/octal-codes.html#chart-oct
 <a class="reference internal" href="gmt.conf.html"><span class="doc">gmt.conf</span></a> file in order to use the accented characters. Using the
 <strong>-G</strong> or <strong>-W</strong> options, a rectangle underlying the text may be plotted
 (does not work for strings with sub/super scripts, symbols, or composite
-characters, except in paragraph mode (<strong>-M</strong>)).</p>
+characters, except in paragraph mode (<strong>-M</strong>)).  Finally, you may typeset
+LaTeX expressions provided they are enclosed in &#64;[ … &#64;[ or &lt;math&gt; … &lt;/math&gt;;
+see Chapter <a class="reference internal" href="cookbook/gmt-latex.html"><span class="doc">Using LaTeX Expressions in GMT</span></a> for more details.</p>
 </div>
 <div class="section" id="required-arguments">
 <h2>Required Arguments<a class="headerlink" href="#required-arguments" title="Permalink to this headline">¶</a></h2>
-<span class="target" id="j"></span><dl class="simple">
-<dt><strong>-J</strong><em>parameters</em> <a class="reference internal" href="gmt.html#j-full"><span class="std std-ref">(more …)</span></a></dt><dd><p>Select map projection.  </p>
-</dd>
-</dl>
-<span class="target" id="r"></span><dl class="simple">
-<dt><strong>-R</strong><em>xmin</em>/<em>xmax</em>/<em>ymin</em>/<em>ymax</em>[<strong>+r</strong>][<strong>+u</strong><em>unit</em>] <a class="reference internal" href="gmt.html#r-full"><span class="std std-ref">(more …)</span></a></dt><dd><p>Specify the region of interest.  </p>
-</dd>
-</dl>
-<p>For perspective view <strong>-p</strong>, optionally append /<em>zmin</em>/<em>zmax</em>. <a class="reference internal" href="gmt.html#rz-full"><span class="std std-ref">(more …)</span></a>  </p>
-</div>
-<div class="section" id="optional-arguments">
-<h2>Optional Arguments<a class="headerlink" href="#optional-arguments" title="Permalink to this headline">¶</a></h2>
 <dl class="simple">
 <dt><em>textfiles</em></dt><dd><p>This is one or more files containing 1 or more records with (<em>x</em>,
 <em>y</em>[, <em>font</em>, <em>angle</em>, <em>justify</em>], <em>text</em>). The attributes in
@@ -308,6 +300,18 @@ C, R (for left, center, or right) and T, M, B for top, middle, or
 bottom. e.g., BL for lower left.</p>
 </dd>
 </dl>
+<span class="target" id="j"></span><dl class="simple">
+<dt><strong>-J</strong><em>parameters</em> <a class="reference internal" href="gmt.html#j-full"><span class="std std-ref">(more …)</span></a></dt><dd><p>Select map projection.  </p>
+</dd>
+</dl>
+<span class="target" id="r"></span><dl class="simple">
+<dt><strong>-R</strong><em>xmin</em>/<em>xmax</em>/<em>ymin</em>/<em>ymax</em>[<strong>+r</strong>][<strong>+u</strong><em>unit</em>] <a class="reference internal" href="gmt.html#r-full"><span class="std std-ref">(more …)</span></a></dt><dd><p>Specify the region of interest.  </p>
+</dd>
+</dl>
+<p>For perspective view <strong>-p</strong>, optionally append /<em>zmin</em>/<em>zmax</em>. <a class="reference internal" href="gmt.html#rz-full"><span class="std std-ref">(more …)</span></a>  </p>
+</div>
+<div class="section" id="optional-arguments">
+<h2>Optional Arguments<a class="headerlink" href="#optional-arguments" title="Permalink to this headline">¶</a></h2>
 <dl class="simple" id="a">
 <dt><strong>-A</strong></dt><dd><p>Angles are given as azimuths; convert them to directions using the
 current projection.</p>
@@ -377,7 +381,8 @@ use <strong>-it</strong><em>word</em> to indicate which word (0 is the first wor
 fill]. Alternatively, give no <em>fill</em> to plot text and then use the
 text dimensions (and <strong>-C</strong>) to build clip paths and turn clipping on.
 This clipping can then be turned off later with <a class="reference internal" href="clip.html"><span class="doc">clip</span></a> <strong>-C</strong>.
-To <strong>not</strong> plot the text but activate clipping, use <strong>-G+n</strong> instead.</p>
+To <strong>not</strong> plot the text but activate clipping, use <strong>-G+n</strong> instead.
+<strong>Note</strong>: cannot be used with LaTeX expressions.</p>
 </dd>
 </dl>
 <dl class="simple" id="l">
@@ -401,7 +406,8 @@ lines with paragraph text. Text may contain the escape sequences
 discussed above, although composite characters are not supported.
 Separate paragraphs with a blank line.  Note that here,
 the justification set via <strong>-F+j</strong> applies to the box alignment
-since the text justification is set by <em>parjust</em>.</p>
+since the text justification is set by <em>parjust</em>.  <strong>Note</strong>:
+cannot be used with LaTeX expressions.</p>
 </dd>
 </dl>
 <dl class="simple" id="n">
@@ -423,7 +429,8 @@ leaves all text as is].</p>
 </dl>
 <dl class="simple" id="w">
 <dt><strong>-W</strong><em>pen</em></dt><dd><p>Sets the pen used to draw a rectangle around the text string (see
-<strong>-C</strong>) [Default is width = default, color = black, style = solid].</p>
+<strong>-C</strong>) [Default is width = default, color = black, style = solid].
+<strong>Note</strong>: cannot be used with LaTeX expressions.</p>
 </dd>
 </dl>
 <p id="x"><strong>-X</strong>[<strong>a</strong>|<strong>c</strong>|<strong>f</strong>|<strong>r</strong>][<em>xshift</em>]</p>
@@ -434,7 +441,8 @@ leaves all text as is].</p>
 <dl class="simple" id="z">
 <dt><strong>-Z</strong></dt><dd><p>For 3-D projections: expect each item to have its own level given in
 the 3rd column, and <strong>-N</strong> is implicitly set. (Not implemented for
-paragraph mode).</p>
+paragraph mode).  <strong>Note</strong>: If <strong>-F+z</strong> is used then the text level
+is based on the 4th data column instead.</p>
 </dd>
 </dl>
 <dl class="simple">
@@ -521,38 +529,36 @@ can be cut and pasted into your terminal for testing.
 Other commands requiring input files are just dummy examples of the types
 of uses that are common but cannot be run verbatim as written.</p>
 <p>To plot just the red outlines of the (lon lat text strings) stored in the
-file text.txt on a Mercator plot with the given specifications, use</p>
-<blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt pstext text.txt -R-30/30/-10/20 -Jm0.1i -P -F+f18p,Helvetica,-<span class="o">=</span><span class="m">0</span>.5p,red -B5 &gt; plot.ps
+file text.txt on a Mercator plot with the given specifications, use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt pstext text.txt -R-30/30/-10/20 -Jm0.1i -P -F+f18p,Helvetica,-<span class="o">=</span><span class="m">0</span>.5p,red -B5 &gt; plot.ps
 </pre></div>
 </div>
-</div></blockquote>
-<p>To plot a text at the upper left corner of a 10 cm map</p>
-<blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> TopLeft <span class="p">|</span> gmt pstext -R1/10/1/10 -JX10 -F+cTL -P &gt; plot.ps
+<p>To plot a text at the upper left corner of a 10 cm map:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> TopLeft <span class="p">|</span> gmt pstext -R1/10/1/10 -JX10 -Baf -F+cTL -P &gt; plot.ps
 </pre></div>
 </div>
-</div></blockquote>
-<p>To add a typeset figure caption for a 3-inch wide illustration, use</p>
-<blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt pstext -R0/3/0/5 -JX3i -O -h1 -M -N -F+f12,Times-Roman+jLT &lt;&lt; EOF &gt;&gt; figure.ps
+<p>To add a typeset figure caption for a 3-inch wide illustration, use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> gmt pstext -R0/3/0/5 -JX3i -O -h1 -M -N -F+f12,Times-Roman+jLT <span class="s">&lt;&lt; EOF &gt;&gt; figure.ps</span>
+
+
+<span class="s">::</span>
+
+<span class="s"> This is an unmarked header record not starting with #</span>
+<span class="s"> &gt; 0 -0.5 13p 3i j</span>
+<span class="s"> @%5%Figure 1.@%% This illustration shows nothing useful, but it still needs</span>
+<span class="s"> a figure caption. Highlighted in @;255/0/0;red@;; you can see the locations</span>
+<span class="s"> of cities where it is @\_impossible@\_ to get any good Thai food; these are to be avoided.</span>
+<span class="s"> EOF</span>
 </pre></div>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>This is an unmarked header record not starting with <span class="c1">#</span>
-&gt; <span class="m">0</span> -0.5 13p 3i j
-@%5%Figure <span class="m">1</span>.@%% This illustration shows nothing useful, but it still needs
-a figure caption. Highlighted in @<span class="p">;</span><span class="m">255</span>/0/0<span class="p">;</span>red@<span class="p">;;</span> you can see the locations
-of cities where it is @<span class="se">\_</span>impossible@<span class="se">\_</span> to get any good Thai food<span class="p">;</span> these are to be avoided.
-EOF
+<p>To add a text without using input data but only the fixed text option:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt pstext -R0/10/0/10 -JX14 -Baf -F+f40+cTC+t<span class="s2">&quot;Inner Title&quot;</span> -D0/-0.5 -P &gt; figure.ps
 </pre></div>
 </div>
-</div></blockquote>
-<p>To add a text without using input data but only the fixed text option</p>
-<blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt pstext -R0/10/0/10 -JX14 -Baf -F+f40+cTC+t<span class="s2">&quot;Inner Title&quot;</span> -D0/-0.5 -P &gt; figure.ps
+<p>To place a line containing a Latex equation, try:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="m">3</span> <span class="m">3</span> <span class="s1">&#39;Use @[\Delta g = 2\pi\rho Gh@[&#39;</span> <span class="p">|</span> gmt pstext -R0/6/0/6 -JX15c -Baf -F+f32p+a30 -P &gt; map.ps
 </pre></div>
 </div>
-</div></blockquote>
 </div>
 <div class="section" id="windows-remarks">
 <h2>Windows Remarks<a class="headerlink" href="#windows-remarks" title="Permalink to this headline">¶</a></h2>
@@ -628,9 +634,9 @@ trailing text.</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, The GMT Team.
+        &copy; Copyright 2021, The GMT Team.
       <span class="lastupdated">
-        Last updated on Dec 02, 2020.
+        Last updated on Jan 25, 2021.
       </span>
 
     </p>

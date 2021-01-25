@@ -33,7 +33,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -132,6 +131,7 @@
 <li class="toctree-l1"><a class="reference internal" href="debug.html">Debugging GMT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">GMT C API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="postscriptlight.html">PostScriptLight C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devdocs.html">Developer Documentation</a></li>
 </ul>
 
             
@@ -383,7 +383,7 @@ can benefit from the GMT infrastructure and extend GMT in specific ways.</p>
 modules. No space between the option flag and the associated arguments.</p>
 <dl id="b-full">
 <dt><strong>-B</strong>[<strong>p</strong>|<strong>s</strong>]<em>parameters</em></dt><dd><p>Set map Frame and Axes parameters. The Frame parameters are specified by</p>
-<p><strong>-B</strong>[<em>axes</em>][<strong>+b</strong>][<strong>+g</strong><em>fill</em>][<strong>+i</strong>[<em>val</em>]][<strong>+n</strong>][<strong>+o</strong><em>lon/lat</em>][<strong>+t</strong><em>title</em>][<strong>+w</strong>[<em>pen</em>]][<strong>+x</strong><em>fill</em>][<strong>+y</strong><em>fill</em>][<strong>+z</strong><em>fill</em>]</p>
+<p><strong>-B</strong>[<em>axes</em>][<strong>+b</strong>][<strong>+g</strong><em>fill</em>][<strong>+i</strong>[<em>val</em>]][<strong>+n</strong>][<strong>+o</strong><em>lon/lat</em>][<strong>+s</strong><em>subtitle</em>][<strong>+t</strong><em>title</em>][<strong>+w</strong>[<em>pen</em>]][<strong>+x</strong><em>fill</em>][<strong>+y</strong><em>fill</em>][<strong>+z</strong><em>fill</em>]</p>
 <p>where <em>axes</em> selects which axes to plot. By default, all four map boundaries
 (or plot axes) are plotted (named <strong>W</strong>, <strong>E</strong>, <strong>S</strong>, <strong>N</strong>). To customize,
 append the codes for those you want (e.g., <strong>WSn</strong>). Upper case means plot
@@ -407,8 +407,12 @@ Append <strong>+n</strong> to have no frame and annotations at all [Default is c
 Optionally append <strong>+o</strong><em>plon/plat</em> to draw oblique gridlines about
 specified pole [regular gridlines]. Ignored if gridlines are not
 requested (below) and disallowed for the oblique Mercator projection.
-To add a plot title, append <strong>+t</strong><em>title</em>. The Frame setting is optional but
-can be invoked once to override the above defaults.</p>
+To add a plot title, append <strong>+t</strong><em>title</em>; optionally add a <em>subtitle</em> via <strong>+s</strong>.
+<strong>Note</strong>: Both <em>title</em> and <em>subtitle</em> may be set over multiple lines by breaking them up
+using the markers ‘&#64;^’ or ‘&lt;break&gt;’.  To include LaTeX code as part of a single-line title or subtitle,
+enclose the expression with &#64;[ markers (or alternatively &lt;math&gt; … &lt;/math&gt;);
+see Chapter <a class="reference internal" href="cookbook/gmt-latex.html"><span class="doc">Using LaTeX Expressions in GMT</span></a> for more details.
+The Frame setting is optional but can be invoked once to override the above defaults.</p>
 <p>The Axes parameters are specified by</p>
 <p><strong>-B</strong>[<strong>p</strong>|<strong>s</strong>][<strong>x</strong>|<strong>y</strong>|<strong>z</strong>]<em>intervals</em>[<strong>+a</strong><em>angle</em>|<strong>n</strong>|<strong>p</strong>][<strong>+f</strong>][<strong>+l</strong>|<strong>L</strong><em>label</em>][<strong>+p</strong><em>prefix</em>][<strong>+s</strong>|<strong>S</strong><em>seclabel</em>][<strong>+u</strong><em>unit</em>]</p>
 <p>but you may also split this into two separate invocations for clarity, i.e.,</p>
@@ -445,11 +449,13 @@ for normal (i.e., <strong>+a</strong>90) and <strong>+ap</strong> for parallel (
 specify annotations normal [Default] and parallel to the axis, respectively. Note that
 these defaults can be changed via <a class="reference internal" href="gmt.conf.html#term-MAP_ANNOT_ORTHO"><span class="xref std std-term">MAP_ANNOT_ORTHO</span></a>. Geographic axes can
 take <strong>+f</strong> which will give fancy annotations with W|E|S|N suffices encoding the sign.
-<strong>Note</strong>: Text items such as <em>title</em>, <em>label</em> and <em>seclabel</em> are seen by GMT as part of
+<strong>Note</strong>: Text items such as <em>title</em>, <em>subtitle</em>, <em>label</em> and <em>seclabel</em> are seen by GMT as part of
 a long string containing everything passed to <strong>-B</strong>. Therefore, they cannot contain substrings
 that looks like other modifiers.  If you need to embed such sequences (e.g., <strong>+t</strong>“Solving a+b=c”)
-you need to replace those + symbols with their octal equivalent \053, (e.g., <strong>+t</strong>“Solving a\053b=c”).</p>
-<p>The <em>intervals</em> specification is a concatenated string made up of substrings
+you need to replace those + symbols with their octal equivalent \053, (e.g., <strong>+t</strong>“Solving a\053b=c”).
+To include LaTeX code as part of a label, enclose the expression with &#64;[ markers (or alternatively
+&lt;math&gt; … &lt;/math&gt;); see Chapter <a class="reference internal" href="cookbook/gmt-latex.html"><span class="doc">Using LaTeX Expressions in GMT</span></a> for more details.
+The <em>intervals</em> specification is a concatenated string made up of substrings
 of the form</p>
 <p>[<strong>a</strong>|<strong>f</strong>|<strong>g</strong>]<em>stride</em>[<em>±phase</em>][<em>unit</em>].</p>
 <p>The leading <strong>a</strong> is used to specify the annotation and major tick
@@ -1252,7 +1258,10 @@ if appended to the first <strong>-l</strong> option, affects the legend width (u
 just subdivides the available width among the specified columns.
 The upper-case modifiers reflect legend codes described in <a class="reference internal" href="legend.html"><span class="doc">legend</span></a>, which provide more details and
 customization.  If <strong>legend</strong> is not called explicitly we will call it implicitly when finishing the plot
-via <a class="reference internal" href="end.html"><span class="doc">end</span></a>.</p>
+via <a class="reference internal" href="end.html"><span class="doc">end</span></a>.  <strong>Note</strong>: If auto-coloring is used for pens or fills and <strong>-l</strong> is set then <em>label</em> may
+contain a C-format for integers (e.g., %3.3d) or just # and we will use the sequence number
+with the format to build the label entries.  Alternatively, give a list of comma-separated labels, or give
+no label if your segment headers contain label settings.</p>
 </dd>
 </dl>
 <dl class="simple" id="n-full">
@@ -1535,18 +1544,19 @@ specify more decimals using the <a class="reference internal" href="gmt.conf.htm
 </div>
 <div class="section" id="grid-file-formats">
 <span id="grd-inout-full"></span><h2>Grid File Formats<a class="headerlink" href="#grid-file-formats" title="Permalink to this headline">¶</a></h2>
-<p>By default GMT writes out grids as single precision floats in a COARDS-complaint netCDF file format.
-However, GMT is able to produce and read grid files in many other commonly used grid file formats
-and also facilitates so called “packing” of grids, writing out floating point data as 1- or 2-byte
-integers. To specify the precision, scale and offset, the user should add the suffix
+<p>By default GMT writes out grids as single precision floats in a COARDS-complaint
+netCDF file format. However, GMT is able to produce and read grid files in many
+other commonly used grid file formats and also facilitates so called “packing”
+of grids, writing out floating point data as 1- or 2-byte integers. To specify
+the precision, scale and offset, the user should add the suffix
 [<strong>=</strong><em>id</em>][<strong>+s</strong><em>scale</em>][<strong>+o</strong><em>offset</em>][<strong>+n</strong><em>invalid</em>], where
 <em>id</em> is a two-letter identifier of the grid type and precision, and the
 <em>scale</em>, <em>offset</em> and <em>invalid</em> are the arguments of optional modifiers to be applied
 to all grid values,  Here, <em>invalid</em> is the value used to indicate missing
-data. In case the <em>id</em> is not provided, as in <strong>+s</strong><em>scale</em>
-than a <em>id</em><strong>=</strong><em>nf</em> is assumed.
-When reading grids, the format is generally automatically recognized from almost all of those formats
-that GMT and GDAL combined offer. If not, the same suffix can be added to input grid file names.
+data. In case the <em>id</em> is not provided, as in <strong>+s</strong><em>scale</em>, then a
+<em>id</em><strong>=</strong><em>nf</em> is assumed. When reading grids, the format is generally
+automatically recognized from almost all of those formats that GMT and GDAL
+combined offer. If not, the same suffix can be added to input grid file names.
 See <a class="reference internal" href="grdconvert.html"><span class="doc">grdconvert</span></a> and Section <a class="reference internal" href="cookbook/features.html#grid-file-format"><span class="std std-ref">Grid file format specifications</span></a>
 of the GMT Technical Reference and Cookbook for more information.</p>
 <p>When reading a netCDF file that contains multiple grids, GMT will
@@ -1558,9 +1568,15 @@ special meaning of <strong>?</strong> in your shell program by putting a backsla
 front of it, or by placing the filename and suffix between quotes or
 double quotes. The <strong>?</strong><em>varname</em> suffix can also be used for output
 grids to specify a variable name different from the default: “z”. See
-<a class="reference internal" href="grdconvert.html"><span class="doc">grdconvert</span></a> and Sections <a class="reference internal" href="cookbook/features.html#modifiers-for-cf"><span class="std std-ref">Modifiers for COARDS-compliant netCDF files</span></a> and <a class="reference internal" href="cookbook/features.html#grid-file-format"><span class="std std-ref">Grid file format specifications</span></a>
-of the GMT Technical Reference and Cookbook for more information, particularly on
-how to read slices of 3-, 4-, or 5-dimensional grids.</p>
+<a class="reference internal" href="grdconvert.html"><span class="doc">grdconvert</span></a> and Sections <a class="reference internal" href="cookbook/features.html#modifiers-for-cf"><span class="std std-ref">Modifiers for COARDS-compliant netCDF files</span></a> and
+<a class="reference internal" href="cookbook/features.html#grid-file-format"><span class="std std-ref">Grid file format specifications</span></a> of the GMT Technical Reference and Cookbook for more
+information, particularly on how to read slices of 3-, 4-, or 5-dimensional grids.</p>
+<p>When writing a netCDF file, the grid is stored by default with the
+variable name “z”. To specify another variable name <em>varname</em>, append
+<strong>?</strong><em>varname</em> to the file name. Note that you may need to escape the
+special meaning of <strong>?</strong> in your shell program by putting a backslash in
+front of it, or by placing the filename and suffix between quotes or
+double quotes.</p>
 </div>
 <div class="section" id="classic-mode-options">
 <h2>Classic Mode Options<a class="headerlink" href="#classic-mode-options" title="Permalink to this headline">¶</a></h2>
@@ -1621,9 +1637,9 @@ GMT documentation site <a class="reference external" href="https://docs.generic-
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, The GMT Team.
+        &copy; Copyright 2021, The GMT Team.
       <span class="lastupdated">
-        Last updated on Dec 02, 2020.
+        Last updated on Jan 25, 2021.
       </span>
 
     </p>

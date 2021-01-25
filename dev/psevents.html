@@ -33,7 +33,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -132,6 +131,7 @@
 <li class="toctree-l1"><a class="reference internal" href="debug.html">Debugging GMT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">GMT C API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="postscriptlight.html">PostScriptLight C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devdocs.html">Developer Documentation</a></li>
 </ul>
 
             
@@ -221,7 +221,7 @@
             
   <span class="target" id="index-0"></span><div class="section" id="psevents">
 <h1>psevents<a class="headerlink" href="#psevents" title="Permalink to this headline">¶</a></h1>
-<p>Plot event symbols and labels for a moment in time</p>
+<p>Plot event symbols, lines, polygons and labels for a moment in time</p>
 <div class="section" id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
 <p><strong>gmt psevents</strong>
@@ -310,7 +310,7 @@ duration (via <strong>-L</strong>) and rise/fade periods (via <strong>-Es</stron
 must be either of the format <em>begin</em>/<em>length</em>|<em>end</em> or <em>begin</em>,<em>length</em>|<em>end</em>.  Use a comma to
 separate absolute time specifications, otherwise a slash is also supported. <strong>Note</strong>:
 Neither lines nor polygons allow for any labels to be placed. Finally, you can use <strong>-Ar</strong><em>dpu</em> to
-perform no plotting but instead convert your <em>x, y[, *zcols</em> ], time* data into <em>densely sampled points</em> so that
+perform no plotting but instead convert your <em>x, y</em>[, <em>zcols</em> ], <em>time</em> data into <em>densely sampled points</em> so that
 later calls to <strong>events</strong> may use this sampled data set instead and plot it as circles with <strong>-Sc</strong>[<em>width</em>].
 This way you can plot “lines” that can have variable pen color and fixed or variable pen width as well as
 taking advantage of the full machinery of <strong>-Es</strong> and <strong>-Et</strong> and all the effects controlled by <strong>-M</strong> for symbols.
@@ -382,10 +382,14 @@ polygons.</p>
 </dd>
 </dl>
 <dl class="simple" id="m">
-<dt><strong>-M</strong><strong>i</strong>|<strong>s</strong>|<strong>t</strong>[<em>val1</em>][<strong>+c</strong><em>val2</em>]</dt><dd><p>Modify the initial <strong>i</strong>ntensity, <strong>s</strong>ize magnification, or <strong>t</strong>ransparency of the symbol during
-the <em>rise</em> interval [1, 1, and 100, respectively].  Repeatable for the different attributes.
+<dt><strong>-M</strong><strong>i</strong>|<strong>s</strong>|<strong>t</strong>[<em>val1</em>][<strong>+c</strong><em>val2</em>]</dt><dd><p>Modify the initial <strong>i</strong>ntensity of the color, <strong>s</strong>ize of the symbol, or its <strong>t</strong>ransparency during
+the <em>rise</em> interval [Defaults are 1, 1, and 100, respectively].  Option <strong>-M</strong> is repeatable for the different attributes.
 Optionally, for finite-duration events you may append <strong>+c</strong> to set the corresponding terminal value
-during the coda [0, 0, 100, respectively].  Polygons can only use <strong>-Mt</strong>.</p>
+during the coda [0, 0, 100, respectively].  The intensity setting (normally in the interval ±1, with 0
+having no effect) is used to brighten (<em>intensity</em> &gt; 0) or darken (<em>intensity</em> &lt; 0)
+the symbol color during this period, the size setting is a magnifying factor that temporarily changes the
+size of the symbol, while the transparency setting affects the symbol’s transparency. <strong>Note</strong>: Polygons
+can only use <strong>-Mt</strong> setting.</p>
 </dd>
 </dl>
 <dl class="simple" id="n">
@@ -622,9 +626,9 @@ or you specify <strong>-Ar</strong>200<strong>i</strong>.</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, The GMT Team.
+        &copy; Copyright 2021, The GMT Team.
       <span class="lastupdated">
-        Last updated on Dec 02, 2020.
+        Last updated on Jan 25, 2021.
       </span>
 
     </p>

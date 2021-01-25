@@ -33,7 +33,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -132,6 +131,7 @@
 <li class="toctree-l1"><a class="reference internal" href="debug.html">Debugging GMT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">GMT C API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="postscriptlight.html">PostScriptLight C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devdocs.html">Developer Documentation</a></li>
 </ul>
 
             
@@ -373,7 +373,7 @@ before the plotting.</p>
 </dl>
 <dl class="simple" id="i">
 <dt><strong>-I</strong>[<em>max_intens</em>|<em>low_i</em>/<em>high_i</em>]</dt><dd><p>Add illumination effects. Optionally, set the range of intensities
-from - to + <em>max_intens</em>. If not specified, 1 is used.
+from -<em>max_intens</em> to +<em>max_intens</em>. If not specified, 1 is used.
 Alternatively, append <em>low/high</em> intensities to specify an
 asymmetric range [Default is no illumination].</p>
 </dd>
@@ -577,9 +577,9 @@ symbol at the left, unless <strong>+n</strong> was used in which case we center 
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, The GMT Team.
+        &copy; Copyright 2021, The GMT Team.
       <span class="lastupdated">
-        Last updated on Dec 02, 2020.
+        Last updated on Jan 25, 2021.
       </span>
 
     </p>
